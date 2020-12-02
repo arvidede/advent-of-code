@@ -3,3 +3,5 @@
 ---
 
 [1](/.solutions/1)
+
+[2](/.solutions/2)
