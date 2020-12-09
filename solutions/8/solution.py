@@ -15,7 +15,7 @@ def replace_pair(v1, v2, line):
     return line
 
 
-def __1__(instructions, visits=False):
+def __1__(instructions):
     acc = 0
     index = 0
     visits = [0] * len(instructions)
@@ -51,7 +51,7 @@ def __2__(instructions_):
             continue
         instructions = original_instructions.copy()
         instructions[i] = replace_pair('jmp', 'nop', instructions[i])
-        acc, terminated = __1__(instructions, visits=False)
+        acc, terminated = __1__(instructions)
         if terminated:
             break
     return acc
