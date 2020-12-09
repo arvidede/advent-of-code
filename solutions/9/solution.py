@@ -18,17 +18,34 @@ def __1__(lines, preamble=25):
 
 
 # If it looks stupid, but it works, it's not stupid
+# def __2__(lines):
+#     invalid_number = __1__(lines)
+
+#     def random_interval(min_=0, max_=len(lines)):
+#         start = random.randint(0, len(lines)-2)
+#         end = random.randint(start + 1, len(lines)-1)
+#         return start, end
+
+#     start, end = random_interval()
+#     while sum(lines[start:end]) != invalid_number:
+#         start, end = random_interval()
+
+#     return min(lines[start:end]) + max(lines[start:end])
+
 def __2__(lines):
     invalid_number = __1__(lines)
 
-    def random_interval(min_=0, max_=len(lines)):
-        start = random.randint(0, len(lines)-2)
-        end = random.randint(start + 1, len(lines)-1)
-        return start, end
+    start = 0
+    end = 1
+    seq_sum = sum(lines[start:end])
 
-    start, end = random_interval()
     while sum(lines[start:end]) != invalid_number:
-        start, end = random_interval()
+        if seq_sum < invalid_number:
+            end += 1
+        if seq_sum > invalid_number:
+            start += 1
+
+        seq_sum = sum(lines[start:end])
 
     return min(lines[start:end]) + max(lines[start:end])
 
