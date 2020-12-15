@@ -15,32 +15,18 @@ def __1__(adapters):
     return differences['1'] * differences['3']
 
 
-def iterate_differences(differences, adjacent):
-    if len(differences) == 0:
-        return 1
-
-    current = differences.pop()
-
-    if current == 1:
-        adjacent += 1
-    else:
-        adjacent = 0
-
-    coef = 2 if adjacent > 1 else 1
-
-    combo = coef * iterate_differences(differences, adjacent) - (adjacent > 3)
-    print(current, combo)
-    return combo
-    # return coef * iterate_differences(differences, adjacent) - (adjacent > 3)
-
-
 def __2__(adapters):
     offset = 3
     device_rating = max(adapters) + offset
     adapters = [0] + sorted(adapters) + [device_rating]
-    differences = [a - b for a, b in zip(adapters[1:], adapters[:-1])]
+    differences = [str(a - b) for a, b in zip(adapters[1:], adapters[:-1])]
+    repeating_ones = "".join(differences).split('3')
 
-    return iterate_differences(differences, 0)
+    combinations = (7 ** repeating_ones.count('1111')) \
+        * (4 ** repeating_ones.count('111')) \
+        * (2 ** repeating_ones.count('11'))
+
+    return combinations
 
 
 def main():
