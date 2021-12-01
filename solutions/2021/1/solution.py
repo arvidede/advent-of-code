@@ -2,11 +2,14 @@ from sys import argv
 
 
 def __1__(lines):
-    return 1
+    nums = list(map(int, lines))
+    return sum([num > nums[i-1] for i, num in enumerate(nums)])
 
 
 def __2__(lines):
-    return 2
+    nums = list(map(int, lines))
+    window = 3
+    return sum([nums[i+window] > nums[i] for i in range(len(nums) - window)])
 
 
 def main():
